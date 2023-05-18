@@ -18,4 +18,17 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function test_basic_example()
+    {
+        //1. Visit the homepage
+        $response = $this->get('/');
+        //2. Press a "Click Me" link
+        $response = $this->get('/feedback');
+        //3. See "You've been clicked, punk"
+        $response->assertSeeText("clicked");
+    }
 }
