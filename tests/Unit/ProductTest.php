@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 use App\Models\Product;
 
 class ProductTest extends \PHPUnit\Framework\TestCase {
