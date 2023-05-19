@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'team_id'
     ];
 
     /**
@@ -41,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function leaveTeam()
+    {
+//        $this->update(['team_id' => null]); --mass assignment version
+        $this->team_id = null;
+        $this->save();
+
+        return $this;
+    }
 }
