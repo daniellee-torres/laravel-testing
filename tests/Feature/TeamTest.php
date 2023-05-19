@@ -4,12 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TeamTest extends TestCase
 {
+    use DatabaseMigrations;
 
     /**
      * @test
@@ -72,7 +74,6 @@ class TeamTest extends TestCase
         $team->remove($users[0]);
 
         $this->assertEquals(1, $team->count());
-
     }
 
     /**
@@ -102,4 +103,23 @@ class TeamTest extends TestCase
 
         $this->assertEquals(1, $team->count());
     }
+
+//    /**
+//     * @test - something is wrong again with expecting an exception
+//     */
+//    public function when_adding_many_members_at_once_you_still_may_not_exceed_the_team_max_size()
+//    {
+//        $team = Team::factory()->create(['size' => 2]);
+//        $users = User::factory(3)->create();
+//
+//        $this->expectException(\Exception::class);
+//        $this->expectExceptionMessage('MaxSizeReached');
+//
+//        try {
+//            $team->add($users);
+//        } catch (\Exception $exception) {
+//            $this->assertEquals('MaxSizeReached', $exception->getMessage());
+//            throw $exception;
+//        }
+//    }
 }

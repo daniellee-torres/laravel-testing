@@ -16,7 +16,7 @@ class Team extends Model
 
     public function add($users)
     {
-        $this->guardAgainstTooManyMembers();
+        $this->guardAgainstTooManyMembers($users);
 
         $method = $users instanceof User ? 'save' : 'saveMany';
         $this->members()->$method($users);
@@ -33,15 +33,24 @@ class Team extends Model
        return $this->members()->count();
     }
 
+    public function maximumSize()
+    {
+        return $this->size;
+    }
+
     /**
      * @return void
      * @throws \Exception
      */
-    private function guardAgainstTooManyMembers(): void
+    private function guardAgainstTooManyMembers($users): void
     {
-        if ($this->count() >= $this->size)
+        $numUsersToAdd = ($users instanceof User) ? 1 : $users->count();
+        $newTeamCount = $this->count() + $numUsersToAdd;
+
+        if ($newTeamCount > $this->maximumSize())
         {
-            throw new Exception();
+            print("TEAM COUNT: " . $newTeamCount);
+            throw new Exception('MaxSizeReached');
         }
     }
 
