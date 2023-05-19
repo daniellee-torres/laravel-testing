@@ -14,12 +14,12 @@ class Team extends Model
 
     protected $fillable = ['name', 'size'];
 
-    public function add($user)
+    public function add($users)
     {
         $this->guardAgainstTooManyMembers();
 
-        $method = $user instanceof User ? 'save' : 'saveMany';
-        $this->members()->$method($user);
+        $method = $users instanceof User ? 'save' : 'saveMany';
+        $this->members()->$method($users);
     }
 
 
@@ -45,23 +45,22 @@ class Team extends Model
         }
     }
 
-    /**
-     * @test
-     */
-    public function a_team_can_remove_a_member()
+    public function remove($users = null)
     {
-
-
-
+        if($users instanceof  User){
+            return $users->leaveTeam();
+        }
+        return $this->removeMany($users);
     }
 
-    /**
-     * @test
-     */
-    public function a_team_can_remove_all_members_at_once()
+    public function removeMany($users)
     {
-
+        $userIds = $users->pluck('id');
+        $this->members()->whereIn('id', $userIds)->update(['team_id' => null]);
     }
 
-
+    public function restart()
+    {
+        return $this->members()->update(['team_id' => null]);
+    }
 }
