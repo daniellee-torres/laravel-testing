@@ -17,7 +17,7 @@ class ArticleTest extends \PHPUnit\Framework\TestCase{
 
         $articles = Article::trending();
 
-        $this->assertEquals($mostPopular->id, $articles->first()->id());
+        $this->assertEquals($mostPopular->id, $articles->first()->id);
         $this->assertCount(3, $articles);
     }
 }
