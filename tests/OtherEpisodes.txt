@@ -6,3 +6,7 @@ E16: Test Clarity: Showing how to refactor an existing test he had made.
         Add comments that break down the steps like a user story
         Inline temp variables.
         Write tests as you would say it in real life.
+E17: How To Test Validation Rules:
+    Create a helper for valid fields that can be overridden on specific fields.
+E18: Shows how to test his Skill Completion Feature on his laracasts website
+    Pain driven development to warrant the refactor!
