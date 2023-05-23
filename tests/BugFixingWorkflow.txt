@@ -1,1 +1,0 @@
-Showed How to fix a production bug using a workflow that involved tdd and git.

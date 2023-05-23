@@ -1,0 +1,8 @@
+E14: Showed How to fix a production bug using a workflow that involved tdd and git.
+E15: Showing how to create homemade fakes using his existing controller that uses Redis to remove it and make a fake implementation instead.
+E16: Test Clarity: Showing how to refactor an existing test he had made.
+    NOTES:
+        Assign names to user calls
+        Add comments that break down the steps like a user story
+        Inline temp variables.
+        Write tests as you would say it in real life.
